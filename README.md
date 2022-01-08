@@ -14,5 +14,6 @@ Jetpack Libraries
 
 
 # Currently developing
+Home Screen
 
-![Home Screen](https://i.ibb.co/2k3QwDW/list-bill.png))
+![Home Screen](https://i.ibb.co/2k3QwDW/list-bill.png)
