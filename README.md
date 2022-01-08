@@ -1,7 +1,7 @@
 # HomePS
 A cybergame management app
 
-Technology: 
+# Technology: 
 
 Android (Kotlin)
 
