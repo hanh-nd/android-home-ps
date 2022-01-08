@@ -32,14 +32,24 @@ private fun getOrCreateAdapter(recyclerView: RecyclerView): ListBillAdapter {
 
 @BindingAdapter("startHour")
 fun bindStartHour(textView: TextView, startTime: String) {
-    textView.text = DateTimeUtil.formatInstantStringToHour(startTime)
+    textView.text = DateTimeUtil.formatInstantStringWithPattern(startTime, "hh:mm")
 }
 
-@BindingAdapter("loading")
-fun bindLoading(progressBar: ProgressBar, itemViewModels: Resource<List<ItemViewModel>>?) {
+@BindingAdapter("onLoading")
+fun bindLoading(view: View, itemViewModels: Resource<List<ItemViewModel>>?) {
     if (itemViewModels is Resource.Loading) {
-        progressBar.visibility = View.VISIBLE
+        view.visibility = View.VISIBLE
     }
 
-    else progressBar.visibility = View.GONE
+    else view.visibility = View.GONE
+}
+
+@BindingAdapter("onError")
+fun bindError(view: TextView, itemViewModels: Resource<List<ItemViewModel>>?) {
+    if (itemViewModels is Resource.Error) {
+        view.visibility = View.VISIBLE
+        view.text = itemViewModels.message
+    }
+
+    else view.visibility = View.GONE
 }

@@ -13,11 +13,11 @@ class ListBillRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val apiMapper: ApiMapper
     ) : ListBillRepository {
-    override fun fetchBillFromNetwork(): Flow<Resource<List<BillItem>>> = flow {
+    override fun fetchBillFromNetwork() = flow {
         emit(Resource.Loading)
 
         try {
-            val response = apiService.getBillList()
+            val response = apiService.getBillList(50)
             val result = response.body()
 
             if (response.isSuccessful && result != null) {

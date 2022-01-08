@@ -4,20 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import me.hanhngo.homeps.BR
 import me.hanhngo.homeps.view.home.model.BillHeader
 import me.hanhngo.homeps.view.home.model.BillItem
 import me.hanhngo.homeps.view.home.model.ItemViewModel
 
-class ListBillAdapter :
+class ListBillAdapter() :
     ListAdapter<ItemViewModel, ListBillAdapter.ListBillViewHolder>(DiffCallBack) {
 
-//    var itemViewModels: List<ItemViewModel> = emptyList()
     private val viewTypeToLayoutId: MutableMap<Int, Int> = mutableMapOf()
-
     class ListBillViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemViewModel) {
@@ -30,7 +28,7 @@ class ListBillAdapter :
 
         override fun areItemsTheSame(oldItem: ItemViewModel, newItem: ItemViewModel): Boolean {
             return if (oldItem is BillItem && newItem is BillItem) {
-                oldItem.id == newItem.id
+                oldItem.bill == newItem.bill
             } else if (oldItem is BillHeader && newItem is BillHeader) {
                 oldItem.time == newItem.time
             } else false
@@ -49,7 +47,6 @@ class ListBillAdapter :
     fun updateItems(items: List<ItemViewModel>?) {
         val itemViewModels = items ?: emptyList()
         this.submitList(itemViewModels)
-        itemViewModels.forEach { println("Hanh: $it") }
         notifyDataSetChanged()
     }
 

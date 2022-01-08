@@ -38,4 +38,5 @@ object NetworkModule {
     @Singleton
     fun provideRepository(apiService: ApiService, apiMapper: ApiMapper): ListBillRepository =
         ListBillRepositoryImpl(apiService, apiMapper)
+
 }

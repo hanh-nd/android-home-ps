@@ -6,16 +6,9 @@ import java.time.format.DateTimeFormatter
 
 object DateTimeUtil {
 
-    fun formatInstantStringToDate(time: String) : String {
+    fun formatInstantStringWithPattern(time: String, pattern: String) : String {
         val timeInstant = Instant.parse(time)
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yy").withZone(ZoneId.of("Europe/London"))
+        val formatter = DateTimeFormatter.ofPattern(pattern).withZone(ZoneId.of("Europe/London"))
         return formatter.format(timeInstant)
     }
-
-    fun formatInstantStringToHour(time: String) : String {
-        val timeInstant = Instant.parse(time)
-        val formatter = DateTimeFormatter.ofPattern("hh:mm").withZone(ZoneId.of("Europe/London"))
-        return formatter.format(timeInstant)
-    }
-
 }

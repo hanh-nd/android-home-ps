@@ -98,8 +98,22 @@
             app:layout_constraintTop_toBottomOf="@id/tv_home_current_playing"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.3"
-            loading="@{homeViewModel.data}"
+            onLoading="@{homeViewModel.data}"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red_text"
+            android:text="An error occurred."
+            android:textSize="18sp"
+            onError="@{homeViewModel.data}"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_current_playing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            android:padding="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_home_list_bill"

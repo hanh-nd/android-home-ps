@@ -8,8 +8,8 @@ data class BillResponse(
     val orderServices: List<OrderServiceResponse>,
     val paid: Boolean,
     val playStation: PlayStationResponse,
-    val timeEnd: String,
+    val timeEnd: String?,
     val timeStart: String,
-    val totalHourPlayed: Double,
-    val totalPrice: Int
+    val totalHourPlayed: Double?,
+    val totalPrice: Int?
 )

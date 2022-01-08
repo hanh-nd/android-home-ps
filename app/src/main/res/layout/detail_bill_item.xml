@@ -6,67 +6,79 @@
     <data>
         <variable
             name="item"
-            type="me.hanhngo.homeps.view.home.model.BillItem" />
+            type="me.hanhngo.homeps.view.billdetail.model.OrderService" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> item.onClick()}"
         android:paddingBottom="8dp">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
             android:background="@drawable/list_bill_background_item">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
                 android:orientation="vertical"
+                android:layout_weight="1"
                 android:paddingHorizontal="70dp">
 
                 <TextView
-                    android:id="@+id/list_bill_item_start_time"
+                    android:id="@+id/detail_bill_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    startHour="@{item.bill.startTime}"
+                    android:text="@{item.service.serviceName}"
                     android:textColor="@color/light_text"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="15:02"
+                    tools:text="Mì tôm"
                     />
 
                 <TextView
-                    android:id="@+id/list_bill_item_status"
+                    android:id="@+id/detail_bill_item_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.bill.status}"
+                    quantity="@{item.quantity}"
                     android:textColor="@color/light_text"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="Đang chơi"/>
+                    tools:text="x1"/>
 
             </LinearLayout>
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/detail_bill_item_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:text="@{item.totalPrice}"
+                android:textColor="@color/red_text"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="1000 đ"/>
+
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/list_bill_circle">
 
-            <TextView
-                android:id="@+id/list_bill_ps_number"
+            <ImageView
+                android:id="@+id/detail_bill_icon"
+                android:src="@drawable/extra_service_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Integer.toString(item.bill.ps.psId)}"
-                android:layout_gravity="center"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/red_text"
-                tools:text="01"/>
+                android:layout_gravity="center" />
         </FrameLayout>
 
     </FrameLayout>

@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import me.hanhngo.homeps.data.network.response.BillResponse
+import me.hanhngo.homeps.domain.Bill
+import me.hanhngo.homeps.mapper.domain.DomainMapper
 import me.hanhngo.homeps.repository.ListBillRepository
 import me.hanhngo.homeps.util.DateTimeUtil
+import me.hanhngo.homeps.util.Event
 import me.hanhngo.homeps.util.Resource
+import me.hanhngo.homeps.view.home.event.ListBillEvent
 import me.hanhngo.homeps.view.home.model.BillHeader
 import me.hanhngo.homeps.view.home.model.BillItem
 import me.hanhngo.homeps.view.home.model.ItemViewModel
@@ -19,7 +22,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: ListBillRepository
+    private val repository: ListBillRepository,
+    private val domainMapper: DomainMapper
 ) : ViewModel() {
 
     companion object {
@@ -29,6 +33,10 @@ class HomeViewModel @Inject constructor(
 
     private var _data = MutableLiveData<Resource<List<ItemViewModel>>>()
     val data: LiveData<Resource<List<ItemViewModel>>> get() = _data
+
+    val events: LiveData<Event<ListBillEvent>>
+        get() = _events
+    private val _events = MutableLiveData<Event<ListBillEvent>>()
 
     init {
         loadData()
@@ -40,9 +48,12 @@ class HomeViewModel @Inject constructor(
                 if (it is Resource.Loading) _data.value = it
 
                 if (it is Resource.Success) {
-                    val bills = it.data
+                    val bills = it.data?.map { bill ->
+                        domainMapper.fromDomainToBillItem(bill, ::onBillClickListener)
+                    }
+
                     val billByDate = bills?.groupBy { item ->
-                        DateTimeUtil.formatInstantStringToDate(item.startTime)
+                        DateTimeUtil.formatInstantStringWithPattern(item.bill.startTime, "dd/MM/yy")
                     }
 
                     val viewData = createViewData(billByDate)
@@ -50,7 +61,7 @@ class HomeViewModel @Inject constructor(
                     _data.value = viewData
                 }
 
-                if (it is Resource.Error) _data.value = it
+                if (it is Resource.Error) _data.value = Resource.Error(it.message)
             }
         }
     }
@@ -69,4 +80,7 @@ class HomeViewModel @Inject constructor(
         return Resource.Success(viewData)
     }
 
+    private fun onBillClickListener(bill: Bill) {
+        _events.value = Event(ListBillEvent.ShowBillDetail(bill))
+    }
 }
