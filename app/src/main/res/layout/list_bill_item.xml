@@ -30,7 +30,7 @@
                     android:id="@+id/list_bill_item_start_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    startHour="@{item.startHour}"
+                    startHour="@{item.startTime}"
                     android:textColor="@color/light_text"
                     android:textSize="18sp"
                     android:textStyle="bold"

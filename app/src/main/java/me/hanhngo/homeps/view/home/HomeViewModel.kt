@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import me.hanhngo.homeps.domain.Bill
+import me.hanhngo.homeps.data.network.response.BillResponse
+import me.hanhngo.homeps.repository.ListBillRepository
 import me.hanhngo.homeps.util.DateTimeUtil
+import me.hanhngo.homeps.util.Resource
 import me.hanhngo.homeps.view.home.model.BillHeader
 import me.hanhngo.homeps.view.home.model.BillItem
 import me.hanhngo.homeps.view.home.model.ItemViewModel
@@ -16,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val provider: BillProvider
+    private val repository: ListBillRepository
 ) : ViewModel() {
 
     companion object {
@@ -24,8 +27,8 @@ class HomeViewModel @Inject constructor(
         const val BILL_HEADER = 1
     }
 
-    private var _data = MutableLiveData<List<ItemViewModel>>()
-    val data: LiveData<List<ItemViewModel>> get() = _data
+    private var _data = MutableLiveData<Resource<List<ItemViewModel>>>()
+    val data: LiveData<Resource<List<ItemViewModel>>> get() = _data
 
     init {
         loadData()
@@ -33,39 +36,37 @@ class HomeViewModel @Inject constructor(
 
     private fun loadData() {
         viewModelScope.launch {
-            val bills = provider.getBillListData()
+            repository.fetchBillFromNetwork().collect {
+                if (it is Resource.Loading) _data.value = it
 
-            val billByDate = bills
-                .sortedBy { it.timeStart }
-                .reversed()
-                .groupBy {
-                    DateTimeUtil.formatInstantStringToDate(it.timeStart)
+                if (it is Resource.Success) {
+                    val bills = it.data
+                    val billByDate = bills?.groupBy { item ->
+                        DateTimeUtil.formatInstantStringToDate(item.startTime)
+                    }
+
+                    val viewData = createViewData(billByDate)
+
+                    _data.value = viewData
                 }
 
-            val viewData = createViewData(billByDate)
-
-            _data.value = viewData
+                if (it is Resource.Error) _data.value = it
+            }
         }
     }
 
-    private fun createViewData(billByDate: Map<String, List<Bill>>): List<ItemViewModel> {
+    private fun createViewData(billByDate: Map<String, List<BillItem>>?): Resource<List<ItemViewModel>> {
         val viewData = mutableListOf<ItemViewModel>()
 
-        billByDate.keys.forEach {
+        billByDate?.keys?.forEach {
             viewData.add(BillHeader(it))
             val bills = billByDate[it]
             bills?.forEach { bill ->
-                val item = BillItem(
-                    bill.billId,
-                    bill.playStation,
-                    bill.timeStart,
-                    if (bill.paid) "Đã kết thúc" else "Đang chơi"
-                )
-                viewData.add(item)
+                viewData.add(bill)
             }
         }
 
-        return viewData
+        return Resource.Success(viewData)
     }
 
 }

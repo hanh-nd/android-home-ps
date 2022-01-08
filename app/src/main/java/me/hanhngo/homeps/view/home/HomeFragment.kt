@@ -6,14 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import me.hanhngo.homeps.R
 import me.hanhngo.homeps.databinding.FragmentHomeBinding
-import me.hanhngo.homeps.domain.Bill
-import me.hanhngo.homeps.domain.PlayStation
-import me.hanhngo.homeps.view.home.adapter.ListBillAdapter
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {

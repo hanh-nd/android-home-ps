@@ -1,9 +1,9 @@
-package me.hanhngo.homeps.domain
+package me.hanhngo.homeps.data.network.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class PlayStation(
+data class PlayStationResponse(
     val psId: Int,
     val psName: String,
     val psState: String,

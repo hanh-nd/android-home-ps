@@ -1,13 +1,13 @@
-package me.hanhngo.homeps.domain
+package me.hanhngo.homeps.data.network.response
 
 
-data class Bill(
+data class BillResponse(
     val billId: Int,
     val dailyEvent: Any?,
     val event: Any?,
-    val orderServices: List<OrderService>,
+    val orderServices: List<OrderServiceResponse>,
     val paid: Boolean,
-    val playStation: PlayStation,
+    val playStation: PlayStationResponse,
     val timeEnd: String,
     val timeStart: String,
     val totalHourPlayed: Double,
