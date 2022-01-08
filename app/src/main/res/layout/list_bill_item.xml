@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="me.hanhngo.homeps.view.home.model.BillItem" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_bill_background_item">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:orientation="vertical"
+                android:paddingHorizontal="70dp">
+
+                <TextView
+                    android:id="@+id/list_bill_item_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    startHour="@{item.startHour}"
+                    android:textColor="@color/light_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="15:02"
+                    />
+
+                <TextView
+                    android:id="@+id/list_bill_item_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.status}"
+                    android:textColor="@color/light_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Đang chơi"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_bill_circle">
+
+            <TextView
+                android:id="@+id/list_bill_ps_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(item.ps.psId)}"
+                android:layout_gravity="center"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/red_text"
+                tools:text="01"/>
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

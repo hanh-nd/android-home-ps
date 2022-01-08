@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="item"
+            type="me.hanhngo.homeps.view.home.model.BillHeader" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_date_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.time}"
+            android:textSize="32sp"
+            android:textColor="@color/light_text"
+            android:textStyle="bold"
+            tools:text="07/01/22"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_background"
+            android:layout_marginHorizontal="8dp" />
+
+    </LinearLayout>
+</layout>
