@@ -15,5 +15,4 @@ Jetpack Libraries
 
 # Currently developing
 
-![Home Screen](![list_bill](https://user-images.githubusercontent.com/38860847/148633668-6fd74884-d48c-45f7-ab62-54492e280838.png)
-)
+![Home Screen](https://i.ibb.co/2k3QwDW/list-bill.png))
