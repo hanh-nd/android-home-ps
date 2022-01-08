@@ -1,4 +1,4 @@
 # HomePS
-An cybergame management app
+A cybergame management app
 
 # Currently developing
