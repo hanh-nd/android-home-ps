@@ -1,9 +1,0 @@
-package me.hanhngo.homeps.view.billdetail
-
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-
-@HiltViewModel
-class BillDetailViewModel @Inject constructor() : ViewModel() {
-}

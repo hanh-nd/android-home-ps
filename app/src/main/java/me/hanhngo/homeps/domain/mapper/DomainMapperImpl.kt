@@ -1,4 +1,4 @@
-package me.hanhngo.homeps.mapper.domain
+package me.hanhngo.homeps.domain.mapper
 
 import me.hanhngo.homeps.domain.Bill
 import me.hanhngo.homeps.view.home.model.BillItem

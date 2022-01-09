@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.hanhngo.homeps.domain.Bill
-import me.hanhngo.homeps.mapper.domain.DomainMapper
+import me.hanhngo.homeps.domain.mapper.DomainMapper
 import me.hanhngo.homeps.repository.ListBillRepository
 import me.hanhngo.homeps.util.DateTimeUtil
 import me.hanhngo.homeps.util.Event
@@ -34,10 +34,11 @@ class HomeViewModel @Inject constructor(
     private var _data = MutableLiveData<Resource<List<ItemViewModel>>>()
     val data: LiveData<Resource<List<ItemViewModel>>> get() = _data
 
-    val events: LiveData<Event<ListBillEvent>>
-        get() = _events
-    private val _events = MutableLiveData<Event<ListBillEvent>>()
+    private var _events = MutableLiveData<Event<ListBillEvent>>()
+    val events: LiveData<Event<ListBillEvent>> get() = _events
 
+    private var _currentPlaying = MutableLiveData<Int>()
+    val currentPlaying: LiveData<Int> get() = _currentPlaying
     init {
         loadData()
     }
@@ -48,7 +49,7 @@ class HomeViewModel @Inject constructor(
                 if (it is Resource.Loading) _data.value = it
 
                 if (it is Resource.Success) {
-                    val bills = it.data?.map { bill ->
+                    val bills = it.data?.currentTurns?.map { bill ->
                         domainMapper.fromDomainToBillItem(bill, ::onBillClickListener)
                     }
 
@@ -59,6 +60,7 @@ class HomeViewModel @Inject constructor(
                     val viewData = createViewData(billByDate)
 
                     _data.value = viewData
+                    _currentPlaying.value = it.data?.currentPlaying
                 }
 
                 if (it is Resource.Error) _data.value = Resource.Error(it.message)

@@ -1,10 +1,13 @@
 package me.hanhngo.homeps.data.network.mapper
 
-import me.hanhngo.homeps.data.network.response.BillResponse
-import me.hanhngo.homeps.domain.Bill
-import me.hanhngo.homeps.view.home.model.BillItem
+import me.hanhngo.homeps.data.network.response.*
+import me.hanhngo.homeps.domain.*
 
 interface ApiMapper {
 
     fun mapBillResponseToDomain(response: BillResponse): Bill
+    fun mapListBillResponseToDomain(response: ListBillResponse): ListBill
+    fun mapOrderServiceResponseToDomain(response: OrderServiceResponse): OrderService
+    fun mapServiceResponseToDomain(response: ServiceResponse): Service
+    fun mapEventResponseToDomain(response: EventResponse?): Event?
 }

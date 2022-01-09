@@ -1,14 +1,11 @@
 package me.hanhngo.homeps.view.billdetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import me.hanhngo.homeps.R
-import me.hanhngo.homeps.databinding.DetailBillItemBinding
 import me.hanhngo.homeps.databinding.FragmentBillDetailBinding
 
 

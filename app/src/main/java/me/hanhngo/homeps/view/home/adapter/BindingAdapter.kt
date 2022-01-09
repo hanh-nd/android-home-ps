@@ -53,3 +53,9 @@ fun bindError(view: TextView, itemViewModels: Resource<List<ItemViewModel>>?) {
 
     else view.visibility = View.GONE
 }
+
+@BindingAdapter("currentPlaying")
+fun bindCurrentPlaying(textView: TextView, currentPlaying: Int) {
+    val result = "$currentPlaying lượt"
+    textView.text = result
+}

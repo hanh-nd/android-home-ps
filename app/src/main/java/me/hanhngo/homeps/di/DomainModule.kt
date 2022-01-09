@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import me.hanhngo.homeps.mapper.domain.DomainMapper
-import me.hanhngo.homeps.mapper.domain.DomainMapperImpl
+import me.hanhngo.homeps.domain.mapper.DomainMapper
+import me.hanhngo.homeps.domain.mapper.DomainMapperImpl
 import javax.inject.Singleton
 
 

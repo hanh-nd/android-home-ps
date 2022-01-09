@@ -16,6 +16,7 @@ class ListBillAdapter() :
     ListAdapter<ItemViewModel, ListBillAdapter.ListBillViewHolder>(DiffCallBack) {
 
     private val viewTypeToLayoutId: MutableMap<Int, Int> = mutableMapOf()
+
     class ListBillViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemViewModel) {
