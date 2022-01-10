@@ -15,6 +15,9 @@
             app:destination="@id/billDetailFragment"
             app:popUpTo="@id/billDetailFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_addBillFragment"
+            app:destination="@id/addBillFragment" />
     </fragment>
     <fragment
         android:id="@+id/billDetailFragment"
@@ -24,10 +27,24 @@
         <argument
             android:name="bill"
             app:argType="me.hanhngo.homeps.domain.Bill" />
+        <action
+            android:id="@+id/action_billDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/statisticFragment"
         android:name="me.hanhngo.homeps.view.statistic.StatisticFragment"
         android:label=""
         tools:layout="@layout/fragment_statistic" />
+    <fragment
+        android:id="@+id/addBillFragment"
+        android:name="me.hanhngo.homeps.view.addbill.AddBillFragment">
+        <action
+            android:id="@+id/action_addBillFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -61,7 +61,7 @@
                 android:id="@+id/list_bill_ps_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Integer.toString(item.bill.ps.psId)}"
+                android:text="@{Integer.toString(item.bill.ps.id)}"
                 android:layout_gravity="center"
                 android:textSize="28sp"
                 android:textStyle="bold"

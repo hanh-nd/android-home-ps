@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="bill"
-            type="me.hanhngo.homeps.domain.Bill" />
+            name="viewModel"
+            type="me.hanhngo.homeps.view.billdetail.BillDetailViewModel" />
 
     </data>
 
@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/tv_bill_id"
-                    bill_id="@{bill.id}"
+                    bill_id="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -63,7 +63,7 @@
 
                 <TextView
                     android:id="@+id/tv_ps_id"
-                    ps_id="@{bill.ps.psId}"
+                    ps_id="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -74,7 +74,7 @@
 
                 <TextView
                     android:id="@+id/tv_start_time"
-                    startTime="@{bill.startTime}"
+                    startTime="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -85,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/tv_end_time"
-                    endTime="@{bill.endTime}"
+                    endTime="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -106,14 +106,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        serviceTitle="@{bill}"
+                        serviceTitle="@{viewModel.bill}"
                         tools:text="Dịch vụ: Không có"
                         android:textColor="@color/light_text"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <FrameLayout
-                        isPaidGone="@{bill.paid}"
+                        isPaidGone="@{viewModel.bill}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
@@ -129,7 +129,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    services="@{bill.services}"
+                    services="@{viewModel.bill}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
@@ -137,8 +137,8 @@
 
                 <TextView
                     android:id="@+id/tv_discount"
-                    discount="@{bill.event}"
-                    isPaidVisible="@{bill.paid}"
+                    discount="@{viewModel.bill}"
+                    isPaidVisible="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -149,8 +149,8 @@
 
                 <TextView
                     android:id="@+id/tv_total_time_played"
-                    playedTime="@{bill.totalHourPlayed}"
-                    isPaidVisible="@{bill.paid}"
+                    playedTime="@{viewModel.bill}"
+                    isPaidVisible="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -161,8 +161,8 @@
 
                 <TextView
                     android:id="@+id/tv_total_price"
-                    isPaidVisible="@{bill.paid}"
-                    price="@{bill.price}"
+                    isPaidVisible="@{viewModel.bill}"
+                    price="@{viewModel.bill}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -185,7 +185,7 @@
             app:layout_constraintEnd_toEndOf="parent">
             <Button
                 android:id="@+id/btn_check_out"
-                isPaidGone="@{bill.paid}"
+                isPaidGone="@{viewModel.bill}"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

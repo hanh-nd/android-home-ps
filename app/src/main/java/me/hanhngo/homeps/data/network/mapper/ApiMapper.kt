@@ -10,4 +10,6 @@ interface ApiMapper {
     fun mapOrderServiceResponseToDomain(response: OrderServiceResponse): OrderService
     fun mapServiceResponseToDomain(response: ServiceResponse): Service
     fun mapEventResponseToDomain(response: EventResponse?): Event?
+    fun mapPsResponseToDomain(response: PlayStationResponse): PlayStation
+    fun mapListPsResponseToDomain(response: ListPsResponse): ListPs
 }

@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import dagger.hilt.android.AndroidEntryPoint
 import me.hanhngo.homeps.databinding.FragmentBillDetailBinding
+import me.hanhngo.homeps.util.Resource
 
 
 @AndroidEntryPoint
@@ -14,7 +19,7 @@ class BillDetailFragment : Fragment() {
 
     private var _binding: FragmentBillDetailBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: BillDetailViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +35,14 @@ class BillDetailFragment : Fragment() {
         val args = BillDetailFragmentArgs.fromBundle(bundle)
 
         binding.lifecycleOwner = this.viewLifecycleOwner
-        binding.bill = args.bill
+        viewModel.fetchBillDetail(args.bill.id)
+        binding.viewModel = viewModel
+        viewModel._bill.value = Resource.Success(args.bill)
+        binding.btnCheckOut.setOnClickListener {
+            viewModel.checkout(args.bill.id)
+            NavHostFragment.findNavController(this)
+                .navigate(BillDetailFragmentDirections.actionBillDetailFragmentToHomeFragment())
+        }
+
     }
 }

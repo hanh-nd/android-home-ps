@@ -45,8 +45,9 @@ class OrderServiceAdapter :
         holder.bind(getItem(position))
     }
 
-    fun updateItems(orderServices: List<OrderService>) {
-        this.submitList(orderServices)
+    fun updateItems(orderServices: List<OrderService>?) {
+        val services = orderServices ?: emptyList()
+        this.submitList(services)
         notifyDataSetChanged()
     }
 }

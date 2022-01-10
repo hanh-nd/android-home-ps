@@ -7,8 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import me.hanhngo.homeps.data.network.ApiService
 import me.hanhngo.homeps.data.network.mapper.ApiMapper
 import me.hanhngo.homeps.data.network.mapper.ApiMapperImpl
-import me.hanhngo.homeps.repository.ListBillRepository
-import me.hanhngo.homeps.repository.ListBillRepositoryImpl
+import me.hanhngo.homeps.repository.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -36,7 +35,25 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRepository(apiService: ApiService, apiMapper: ApiMapper): ListBillRepository =
+    fun provideListBillRepository(
+        apiService: ApiService,
+        apiMapper: ApiMapper
+    ): ListBillRepository =
         ListBillRepositoryImpl(apiService, apiMapper)
 
+    @Provides
+    @Singleton
+    fun provideBillDetailRepository(
+        apiService: ApiService,
+        apiMapper: ApiMapper
+    ): BillDetailRepository =
+        BillDetailRepositoryImpl(apiService, apiMapper)
+
+
+    @Provides
+    @Singleton
+    fun providePsRepository(
+        apiService: ApiService,
+        apiMapper: ApiMapper
+    ): PlayStationRepository = PlayStationRepositoryImpl(apiService, apiMapper)
 }

@@ -7,7 +7,7 @@ class ApiMapperImpl : ApiMapper {
     override fun mapBillResponseToDomain(response: BillResponse): Bill {
         return Bill(
             response.billId,
-            response.playStation,
+            mapPsResponseToDomain(response.playStation),
             response.orderServices.map { mapOrderServiceResponseToDomain(it) },
             mapEventResponseToDomain(response.event),
             response.timeStart,
@@ -53,6 +53,23 @@ class ApiMapperImpl : ApiMapper {
             response.percentDiscount,
             response.timeEnd,
             response.timeStart
+        )
+    }
+
+    override fun mapPsResponseToDomain(response: PlayStationResponse): PlayStation {
+        return PlayStation(
+            response.psId,
+            response.psName,
+            response.psState,
+            response.psStatus,
+        )
+    }
+
+    override fun mapListPsResponseToDomain(response: ListPsResponse): ListPs {
+        return ListPs(
+            response.currentPage,
+            response.totalPage,
+            response.psList.map { mapPsResponseToDomain(it) }
         )
     }
 }
