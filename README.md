@@ -14,3 +14,6 @@ Jetpack Libraries
 
 
 # Currently developing
+- List Bill Screen:
+
+![list_bill_screen](https://i.postimg.cc/gjhkVKcF/list-bill-scr.png)
